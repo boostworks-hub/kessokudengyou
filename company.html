@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社概要 | 有限会社結束電業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dark-green:#2d4a1e;--mid-green:#3d6128;--brown:#5c3317;--gold:#c9a227;--gold-light:#e0b93a;--dark:#0f1a08;--dark2:#1a2a0f;--cream:#f2ead8;--gray:#a89880;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:#0f1a08;color:#f2ead8;overflow-x:hidden;}
+
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(15,26,8,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,39,0.2);}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;}
+.logo-en{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:3px;}
+.logo-ja{font-family:'Noto Serif JP',sans-serif;font-size:10px;color:var(--cream);letter-spacing:2px;opacity:0.8;}
+nav{display:flex;gap:32px;}
+nav a{font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:var(--cream);text-decoration:none;letter-spacing:1px;position:relative;padding-bottom:4px;transition:color 0.3s;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+nav a:hover,nav a.active{color:var(--gold);}
+nav a:hover::after,nav a.active::after{width:100%;}
+.header-cta{display:flex;align-items:center;gap:16px;}
+.tel-header{font-family:'Oswald',sans-serif;font-size:16px;color:var(--gold);letter-spacing:1px;}
+.btn-primary{background:var(--gold);color:#0f1a08;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;padding:10px 20px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;}
+.btn-primary:hover{background:var(--gold-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;width:100%;background:rgba(10,18,5,0.98);z-index:999;padding:32px 40px;border-top:1px solid rgba(201,162,39,0.1);}
+.mobile-nav.open{display:flex;flex-direction:column;gap:20px;}
+.mobile-nav a{font-size:16px;color:var(--cream);text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(201,162,39,0.1);}
+
+.page-hero{padding-top:72px;height:320px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--dark) 0%,var(--dark-green) 50%,var(--brown) 100%);}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,162,39,0.08) 1px,transparent 1px);background-size:28px 28px;}
+.page-hero-line{position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--gold),transparent);}
+.page-hero-content{padding:0 80px;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.breadcrumb a,.breadcrumb span{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(242,234,216,0.4);text-decoration:none;}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb .sep{color:rgba(201,162,39,0.3);}
+.breadcrumb .current{color:var(--gold);}
+.page-hero-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
+.page-hero-title{font-family:'Noto Serif JP',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:900;line-height:1.2;}
+
+.container{max-width:1200px;margin:0 auto;padding:0 40px;}
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity 0.7s,transform 0.7s;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.section-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
+.section-title{font-family:'Noto Serif JP',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.4;margin-bottom:16px;}
+
+/* MESSAGE */
+.message-section{padding:100px 0;background:var(--dark2);position:relative;overflow:hidden;}
+.message-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,162,39,0.05) 1px,transparent 1px);background-size:28px 28px;}
+.message-inner{display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:start;position:relative;z-index:1;}
+.message-photo{position:relative;}
+.message-photo-frame{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,var(--dark-green),var(--brown));display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;overflow:hidden;}
+.message-photo-frame::after{content:'代表者';position:absolute;bottom:0;left:0;right:0;background:rgba(15,26,8,0.7);font-family:'Noto Serif JP',sans-serif;font-size:12px;color:rgba(242,234,216,0.5);text-align:center;padding:12px;letter-spacing:3px;}
+.msg-decor{position:absolute;top:-12px;right:-12px;width:80px;height:80px;border:2px solid var(--gold);opacity:0.3;}
+.message-content{}
+.message-name{font-family:'Noto Serif JP',sans-serif;font-size:22px;font-weight:700;margin-bottom:4px;}
+.message-role{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:32px;}
+.message-text{font-size:15px;line-height:2.1;color:rgba(242,234,216,0.8);}
+.message-text p{margin-bottom:20px;}
+.message-sig{font-family:'Noto Serif JP',sans-serif;font-size:18px;font-weight:700;color:var(--gold);margin-top:32px;text-align:right;}
+
+/* PROFILE TABLE */
+.company-section{padding:100px 0;background:var(--dark);}
+.table-wrap{margin-top:48px;}
+table.company-table{width:100%;border-collapse:collapse;}
+table.company-table tr{border-bottom:1px solid rgba(201,162,39,0.1);}
+table.company-table tr:first-child{border-top:1px solid rgba(201,162,39,0.1);}
+table.company-table th{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:2px;color:var(--gold);text-align:left;padding:22px 0 22px 0;width:200px;vertical-align:top;padding-right:32px;}
+table.company-table td{font-size:14px;color:rgba(242,234,216,0.75);padding:22px 0;line-height:1.8;}
+
+/* ACCESS */
+.access-section{padding:100px 0;background:var(--dark2);}
+.access-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start;margin-top:48px;}
+.access-info{}
+.access-item{margin-bottom:28px;}
+.access-item-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;}
+.access-item-val{font-size:14px;color:rgba(242,234,216,0.75);line-height:1.8;}
+.access-map{width:100%;aspect-ratio:4/3;border:1px solid rgba(201,162,39,0.2);}
+.access-map iframe{width:100%;height:100%;border:0;filter:grayscale(60%) contrast(1.1);}
+
+/* CTA */
+.cta-band{background:linear-gradient(135deg,var(--brown),var(--dark-green));padding:80px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:rgba(15,26,8,0.5);}
+.cta-band-inner{position:relative;z-index:1;}
+.cta-band h2{font-family:'Noto Serif JP',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:900;margin-bottom:12px;}
+.cta-band p{font-size:14px;color:rgba(242,234,216,0.65);margin-bottom:36px;}
+.btn-cta-main{background:var(--gold);color:#0f1a08;font-family:'Noto Sans JP',sans-serif;font-size:15px;font-weight:700;padding:18px 48px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;display:inline-flex;align-items:center;gap:10px;margin:0 10px;}
+.btn-cta-main:hover{background:var(--gold-light);transform:translateY(-3px);}
+.btn-cta-sub{border:1px solid rgba(242,234,216,0.4);color:var(--cream);font-family:'Noto Sans JP',sans-serif;font-size:15px;padding:18px 48px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;display:inline-flex;align-items:center;gap:10px;margin:0 10px;}
+.btn-cta-sub:hover{border-color:var(--gold);color:var(--gold);}
+
+footer{background:#070f04;border-top:1px solid rgba(201,162,39,0.15);padding:64px 0 32px;}
+.footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand .logo-en{font-size:22px;}
+.footer-desc{font-size:12px;color:rgba(242,234,216,0.4);line-height:1.9;margin-top:16px;}
+.footer-tel{font-family:'Oswald',sans-serif;font-size:22px;color:var(--gold);margin-top:20px;}
+.footer-addr{font-size:11px;color:rgba(242,234,216,0.35);margin-top:6px;line-height:1.6;}
+.footer-col h4{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul li a{font-size:12px;color:rgba(242,234,216,0.45);text-decoration:none;transition:color 0.3s;display:inline-flex;align-items:center;gap:6px;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(201,162,39,0.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.copyright{font-family:'Oswald',sans-serif;font-size:11px;color:rgba(242,234,216,0.2);letter-spacing:2px;}
+
+@media(max-width:900px){
+  nav,.header-cta .btn-primary{display:none;}
+  .hamburger{display:flex;}
+  .page-hero-content{padding:0 32px;}
+  .message-inner{grid-template-columns:1fr;}
+  .access-inner{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+  table.company-table th{width:140px;}
+}
+@media(max-width:600px){
+  header{padding:0 20px;}
+  .page-hero-content{padding:0 20px;}
+  .container{padding:0 20px;}
+  table.company-table th,.table-wrap{display:block;}
+  table.company-table tr{display:block;padding:16px 0;}
+  table.company-table th{width:100%;padding:0 0 6px;font-size:11px;}
+  table.company-table td{display:block;padding:0;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-en">KESSOKU DENGYOU</span>
+    <span class="logo-ja">有限会社結束電業</span>
+  </a>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="service.html">施工案内</a>
+    <a href="works.html">施工実績</a>
+    <a href="company.html" class="active">会社概要</a>
+    <a href="recruit.html">採用情報</a>
+    <a href="contact.html">お問い合わせ</a>
+  </nav>
+  <div class="header-cta">
+    <span class="tel-header">📞 048-987-8278</span>
+    <a href="contact.html" class="btn-primary">無料相談</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="service.html">施工案内</a>
+  <a href="works.html">施工実績</a>
+  <a href="company.html">会社概要</a>
+  <a href="recruit.html">採用情報</a>
+  <a href="contact.html">お問い合わせ</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-line"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">HOME</a>
+      <span class="sep">／</span>
+      <span class="current">会社概要</span>
+    </div>
+    <p class="page-hero-label">COMPANY</p>
+    <h1 class="page-hero-title">会社概要</h1>
+  </div>
+</div>
+
+<!-- MESSAGE -->
+<section class="message-section">
+  <div class="container">
+    <div class="message-inner fade-up">
+      <div class="message-photo">
+        <div class="message-photo-frame">👷</div>
+        <div class="msg-decor"></div>
+      </div>
+      <div class="message-content">
+        <p class="section-label">PRESIDENT MESSAGE</p>
+        <h2 class="section-title">代表メッセージ</h2>
+        <div class="message-text">
+          <p>電気工事は、目に見えないところで人々の安全と快適を支える仕事です。スイッチを押せば明かりがつく、コンセントに差せば電気が使える――そんな当たり前の日常を陰で守っているのが、私たち電気工事の職人です。</p>
+          <p>私たちは一件一件を丁寧に、手を抜かない施工を徹底しています。小さな工事でも手を抜けば、それが火災など大きな事故につながる恐れがあります。だからこそ、どんな案件でも有資格者が責任を持って施工し、明瞭なお見積りとわかりやすい説明を心がけています。</p>
+          <p>地域のお客様に長く信頼していただける会社であり続けることが、私たちの誇りです。どうぞお気軽にご相談ください。</p>
+        </div>
+        <p class="message-sig">代表　結束 定義</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY TABLE -->
+<section class="company-section">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">COMPANY PROFILE</p>
+      <h2 class="section-title">会社概要</h2>
+    </div>
+    <div class="table-wrap fade-up">
+      <table class="company-table">
+        <tr>
+          <th>会社名</th>
+          <td>有限会社結束電業</td>
+        </tr>
+        <tr>
+          <th>英語名</th>
+          <td>YUGEN KAISHA KESSOKU DENGYOU</td>
+        </tr>
+        <tr>
+          <th>代表者</th>
+          <td>結束 定義</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>〒343-0042<br>埼玉県越谷市大間野町４－３３５－１４</td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>048-987-8278</td>
+        </tr>
+        <tr>
+          <th>業種</th>
+          <td>電気工事業</td>
+        </tr>
+        <tr>
+          <th>対応エリア</th>
+          <td>埼玉県全域（越谷市・草加市・春日部市・さいたま市・吉川市・松伏町ほか）</td>
+        </tr>
+        <tr>
+          <th>主な施工内容</th>
+          <td>一般住宅電気工事 ／ 店舗・オフィス電気工事 ／ 工場・産業施設電気工事 ／ 電気設備メンテナンス・点検</td>
+        </tr>
+        <tr>
+          <th>営業時間</th>
+          <td>8:00〜18:00</td>
+        </tr>
+        <tr>
+          <th>定休日</th>
+          <td>日曜日・祝日</td>
+        </tr>
+        <tr>
+          <th>許可・資格</th>
+          <td>電気工事業（第一種電気工事士在籍）</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access-section">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-label">ACCESS</p>
+      <h2 class="section-title">アクセス</h2>
+    </div>
+    <div class="access-inner fade-up">
+      <div class="access-info">
+        <div class="access-item">
+          <p class="access-item-label">ADDRESS</p>
+          <p class="access-item-val">〒343-0042<br>埼玉県越谷市大間野町４－３３５－１４</p>
+        </div>
+        <div class="access-item">
+          <p class="access-item-label">TEL</p>
+          <p class="access-item-val">048-987-8278</p>
+        </div>
+        <div class="access-item">
+          <p class="access-item-label">HOURS</p>
+          <p class="access-item-val">受付時間 8:00〜18:00<br>定休日：日曜日・祝日</p>
+        </div>
+        <div class="access-item">
+          <p class="access-item-label">NEAREST STATION</p>
+          <p class="access-item-val">東武スカイツリーライン「蒲生駅」より車で約10分</p>
+        </div>
+      </div>
+      <div class="access-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3232.0!2d139.805!3d35.866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z5Z-8546J5o2Q55S677yT77yT77yT77yQ77yT77yR!5e0!3m2!1sja!2sjp!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="有限会社結束電業 地図"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner fade-up">
+      <h2>まずはお気軽にご相談ください</h2>
+      <p>無料現地調査・お見積りは費用不要。どんな些細なご相談でもお答えします。</p>
+      <a href="contact.html" class="btn-cta-main">▶ お問い合わせはこちら</a>
+      <a href="tel:0489878278" class="btn-cta-sub">📞 048-987-8278</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-en">KESSOKU DENGYOU</span>
+          <span class="logo-ja">有限会社結束電業</span>
+        </div>
+        <p class="footer-desc">越谷市を拠点に埼玉県全域で電気工事を手がける、創業30年以上の地域密着型電気工事会社です。</p>
+        <p class="footer-tel">048-987-8278</p>
+        <p class="footer-addr">〒343-0042<br>埼玉県越谷市大間野町４－３３５－１４<br>受付 8:00〜18:00 ／ 日曜・祝日定休</p>
+      </div>
+      <div class="footer-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li><a href="service.html">→ 一般住宅電気工事</a></li>
+          <li><a href="service.html">→ 店舗・オフィス電気工事</a></li>
+          <li><a href="service.html">→ 工場・産業施設電気工事</a></li>
+          <li><a href="service.html">→ 電気設備メンテナンス</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>PAGES</h4>
+        <ul>
+          <li><a href="index.html">→ HOME</a></li>
+          <li><a href="works.html">→ 施工実績</a></li>
+          <li><a href="company.html">→ 会社概要</a></li>
+          <li><a href="recruit.html">→ 採用情報</a></li>
+          <li><a href="contact.html">→ お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copyright">© 2024 YUGEN KAISHA KESSOKU DENGYOU. ALL RIGHTS RESERVED.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const ham = document.getElementById('hamburger');
+const mNav = document.getElementById('mobileNav');
+ham.addEventListener('click', () => mNav.classList.toggle('open'));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

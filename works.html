@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施工実績 | 有限会社結束電業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dark-green:#2d4a1e;--mid-green:#3d6128;--brown:#5c3317;--gold:#c9a227;--gold-light:#e0b93a;--dark:#0f1a08;--dark2:#1a2a0f;--cream:#f2ead8;--gray:#a89880;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:#0f1a08;color:#f2ead8;overflow-x:hidden;}
+
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(15,26,8,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,39,0.2);}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;}
+.logo-en{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:3px;}
+.logo-ja{font-family:'Noto Serif JP',sans-serif;font-size:10px;color:var(--cream);letter-spacing:2px;opacity:0.8;}
+nav{display:flex;gap:32px;}
+nav a{font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:var(--cream);text-decoration:none;letter-spacing:1px;position:relative;padding-bottom:4px;transition:color 0.3s;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+nav a:hover,nav a.active{color:var(--gold);}
+nav a:hover::after,nav a.active::after{width:100%;}
+.header-cta{display:flex;align-items:center;gap:16px;}
+.tel-header{font-family:'Oswald',sans-serif;font-size:16px;color:var(--gold);letter-spacing:1px;}
+.btn-primary{background:var(--gold);color:#0f1a08;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;padding:10px 20px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;}
+.btn-primary:hover{background:var(--gold-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;width:100%;background:rgba(10,18,5,0.98);z-index:999;padding:32px 40px;border-top:1px solid rgba(201,162,39,0.1);}
+.mobile-nav.open{display:flex;flex-direction:column;gap:20px;}
+.mobile-nav a{font-size:16px;color:var(--cream);text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(201,162,39,0.1);}
+
+.page-hero{padding-top:72px;height:320px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--dark) 0%,var(--dark-green) 50%,var(--brown) 100%);}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,162,39,0.08) 1px,transparent 1px);background-size:28px 28px;}
+.page-hero-line{position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--gold),transparent);}
+.page-hero-content{padding:0 80px;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.breadcrumb a,.breadcrumb span{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(242,234,216,0.4);text-decoration:none;}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb .sep{color:rgba(201,162,39,0.3);}
+.breadcrumb .current{color:var(--gold);}
+.page-hero-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
+.page-hero-title{font-family:'Noto Serif JP',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:900;line-height:1.2;}
+
+.container{max-width:1200px;margin:0 auto;padding:0 40px;}
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity 0.7s,transform 0.7s;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* FILTER */
+.works-section{padding:80px 0 100px;background:var(--dark);}
+.works-header{text-align:center;margin-bottom:56px;}
+.section-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
+.section-title{font-family:'Noto Serif JP',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.4;margin-bottom:20px;}
+.section-desc{font-size:14px;color:rgba(242,234,216,0.55);max-width:500px;margin:0 auto;}
+
+.filter-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:56px;}
+.filter-btn{font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:2px;padding:9px 24px;border:1px solid rgba(201,162,39,0.3);background:transparent;color:rgba(242,234,216,0.55);cursor:pointer;transition:all 0.3s;}
+.filter-btn:hover,.filter-btn.active{background:var(--gold);color:#0f1a08;border-color:var(--gold);}
+
+/* GRID */
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.work-card{position:relative;overflow:hidden;aspect-ratio:4/3;cursor:pointer;}
+.work-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s;}
+.work-card:hover img{transform:scale(1.08);}
+.work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,26,8,0.96) 0%,rgba(15,26,8,0.2) 55%,transparent 100%);opacity:0.7;transition:opacity 0.4s;}
+.work-card:hover .work-overlay{opacity:1;}
+.work-info{position:absolute;bottom:0;left:0;right:0;padding:24px;transform:translateY(6px);transition:transform 0.4s;}
+.work-card:hover .work-info{transform:translateY(0);}
+.work-label{display:inline-block;background:var(--gold);color:#0f1a08;font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;padding:3px 10px;margin-bottom:8px;}
+.work-place{font-size:11px;color:rgba(242,234,216,0.45);margin-bottom:4px;letter-spacing:1px;}
+.work-title{font-family:'Noto Serif JP',sans-serif;font-size:14px;font-weight:700;}
+.work-desc{font-size:11px;color:rgba(242,234,216,0.55);margin-top:6px;line-height:1.6;opacity:0;transition:opacity 0.4s 0.1s;}
+.work-card:hover .work-desc{opacity:1;}
+.work-card.hide{display:none;}
+
+/* CTA */
+.cta-band{background:linear-gradient(135deg,var(--brown),var(--dark-green));padding:80px 0;text-align:center;position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;background:rgba(15,26,8,0.5);}
+.cta-band-inner{position:relative;z-index:1;}
+.cta-band h2{font-family:'Noto Serif JP',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:900;margin-bottom:12px;}
+.cta-band p{font-size:14px;color:rgba(242,234,216,0.65);margin-bottom:36px;}
+.btn-cta-main{background:var(--gold);color:#0f1a08;font-family:'Noto Sans JP',sans-serif;font-size:15px;font-weight:700;padding:18px 48px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;display:inline-flex;align-items:center;gap:10px;margin:0 10px;}
+.btn-cta-main:hover{background:var(--gold-light);transform:translateY(-3px);}
+.btn-cta-sub{border:1px solid rgba(242,234,216,0.4);color:var(--cream);font-family:'Noto Sans JP',sans-serif;font-size:15px;padding:18px 48px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;display:inline-flex;align-items:center;gap:10px;margin:0 10px;}
+.btn-cta-sub:hover{border-color:var(--gold);color:var(--gold);}
+
+footer{background:#070f04;border-top:1px solid rgba(201,162,39,0.15);padding:64px 0 32px;}
+.footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand .logo-en{font-size:22px;}
+.footer-desc{font-size:12px;color:rgba(242,234,216,0.4);line-height:1.9;margin-top:16px;}
+.footer-tel{font-family:'Oswald',sans-serif;font-size:22px;color:var(--gold);margin-top:20px;}
+.footer-addr{font-size:11px;color:rgba(242,234,216,0.35);margin-top:6px;line-height:1.6;}
+.footer-col h4{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul li a{font-size:12px;color:rgba(242,234,216,0.45);text-decoration:none;transition:color 0.3s;display:inline-flex;align-items:center;gap:6px;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(201,162,39,0.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.copyright{font-family:'Oswald',sans-serif;font-size:11px;color:rgba(242,234,216,0.2);letter-spacing:2px;}
+
+@media(max-width:900px){
+  nav,.header-cta .btn-primary{display:none;}
+  .hamburger{display:flex;}
+  .page-hero-content{padding:0 32px;}
+  .works-grid{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  header{padding:0 20px;}
+  .page-hero-content{padding:0 20px;}
+  .container{padding:0 20px;}
+  .works-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-en">KESSOKU DENGYOU</span>
+    <span class="logo-ja">有限会社結束電業</span>
+  </a>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="service.html">施工案内</a>
+    <a href="works.html" class="active">施工実績</a>
+    <a href="company.html">会社概要</a>
+    <a href="recruit.html">採用情報</a>
+    <a href="contact.html">お問い合わせ</a>
+  </nav>
+  <div class="header-cta">
+    <span class="tel-header">📞 048-987-8278</span>
+    <a href="contact.html" class="btn-primary">無料相談</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="service.html">施工案内</a>
+  <a href="works.html">施工実績</a>
+  <a href="company.html">会社概要</a>
+  <a href="recruit.html">採用情報</a>
+  <a href="contact.html">お問い合わせ</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-line"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">HOME</a>
+      <span class="sep">／</span>
+      <span class="current">施工実績</span>
+    </div>
+    <p class="page-hero-label">WORKS</p>
+    <h1 class="page-hero-title">施工実績</h1>
+  </div>
+</div>
+
+<section class="works-section">
+  <div class="container">
+    <div class="works-header fade-up">
+      <p class="section-label">OUR WORKS</p>
+      <h2 class="section-title">これまでの施工実績</h2>
+      <p class="section-desc">住宅・店舗・工場・公共施設まで、埼玉県内を中心に多数の施工実績があります。</p>
+    </div>
+
+    <div class="filter-tabs fade-up">
+      <button class="filter-btn active" data-filter="all">すべて</button>
+      <button class="filter-btn" data-filter="residential">住宅工事</button>
+      <button class="filter-btn" data-filter="commercial">店舗・オフィス</button>
+      <button class="filter-btn" data-filter="industrial">工場・産業</button>
+      <button class="filter-btn" data-filter="maintenance">メンテナンス</button>
+    </div>
+
+    <div class="works-grid fade-up">
+
+      <div class="work-card" data-cat="residential">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="住宅新築電気工事">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">住宅工事</span>
+          <p class="work-place">📍 越谷市内</p>
+          <h4 class="work-title">住宅新築電気工事</h4>
+          <p class="work-desc">戸建て新築の全電気設備を一括施工。分電盤設置からコンセント・照明配線まで対応。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="commercial">
+        <img src="https://images.unsplash.com/photo-1565608087341-404b25492fee?w=600&q=80" alt="飲食店電気工事">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">店舗・オフィス</span>
+          <p class="work-place">📍 草加市内</p>
+          <h4 class="work-title">飲食店テナント電気工事</h4>
+          <p class="work-desc">新規開業飲食店の動力設備・照明・厨房配線工事。工期厳守でオープンをサポート。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="industrial">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="工場幹線工事">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">工場・産業</span>
+          <p class="work-place">📍 春日部市内</p>
+          <h4 class="work-title">工場内幹線・動力工事</h4>
+          <p class="work-desc">製造工場増設に伴う幹線引込み・動力盤増設・機器配線工事。安全管理徹底で完工。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="residential">
+        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80" alt="リフォーム電気工事">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">住宅工事</span>
+          <p class="work-place">📍 越谷市内</p>
+          <h4 class="work-title">戸建てリフォーム電気工事</h4>
+          <p class="work-desc">築30年の戸建て全面リフォームに伴う電気配線の全面更新。分電盤交換・コンセント増設。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="commercial">
+        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="オフィス電気工事">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">店舗・オフィス</span>
+          <p class="work-place">📍 さいたま市内</p>
+          <h4 class="work-title">オフィス移転・電気工事</h4>
+          <p class="work-desc">企業オフィス移転に伴う新オフィスの電気設備全般。OAフロア配線・照明工事を施工。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="maintenance">
+        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80" alt="設備点検">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">メンテナンス</span>
+          <p class="work-place">📍 吉川市内</p>
+          <h4 class="work-title">工場電気設備定期点検</h4>
+          <p class="work-desc">製造工場の年次定期点検。絶縁測定・漏電チェック・制御盤の動作確認を実施。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="residential">
+        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=600&q=80" alt="LED照明工事">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">住宅工事</span>
+          <p class="work-place">📍 松伏町内</p>
+          <h4 class="work-title">住宅LED照明全面改修</h4>
+          <p class="work-desc">戸建て住宅の照明を全室LED化。省エネ効果と快適な光環境を両立する提案・施工。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="industrial">
+        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80" alt="倉庫照明工事">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">工場・産業</span>
+          <p class="work-place">📍 越谷市内</p>
+          <h4 class="work-title">物流倉庫LED照明工事</h4>
+          <p class="work-desc">大型物流倉庫の照明を高天井用LEDへ全面更新。消費電力40%削減を実現。</p>
+        </div>
+      </div>
+
+      <div class="work-card" data-cat="maintenance">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="漏電調査">
+        <div class="work-overlay"></div>
+        <div class="work-info">
+          <span class="work-label">メンテナンス</span>
+          <p class="work-place">📍 草加市内</p>
+          <h4 class="work-title">店舗漏電調査・修繕工事</h4>
+          <p class="work-desc">飲食店での漏電トラブルに緊急対応。原因箇所を特定し配線修繕・分電盤交換を実施。</p>
+        </div>
+      </div>
+
+    </div><!-- /works-grid -->
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner fade-up">
+      <h2>施工のご依頼・ご相談はお気軽に</h2>
+      <p>無料現地調査・お見積りから承ります。まずはお電話かメールでご連絡ください。</p>
+      <a href="contact.html" class="btn-cta-main">▶ お問い合わせはこちら</a>
+      <a href="tel:0489878278" class="btn-cta-sub">📞 048-987-8278</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-en">KESSOKU DENGYOU</span>
+          <span class="logo-ja">有限会社結束電業</span>
+        </div>
+        <p class="footer-desc">越谷市を拠点に埼玉県全域で電気工事を手がける、創業30年以上の地域密着型電気工事会社です。</p>
+        <p class="footer-tel">048-987-8278</p>
+        <p class="footer-addr">〒343-0042<br>埼玉県越谷市大間野町４－３３５－１４<br>受付 8:00〜18:00 ／ 日曜・祝日定休</p>
+      </div>
+      <div class="footer-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li><a href="service.html">→ 一般住宅電気工事</a></li>
+          <li><a href="service.html">→ 店舗・オフィス電気工事</a></li>
+          <li><a href="service.html">→ 工場・産業施設電気工事</a></li>
+          <li><a href="service.html">→ 電気設備メンテナンス</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>PAGES</h4>
+        <ul>
+          <li><a href="index.html">→ HOME</a></li>
+          <li><a href="works.html">→ 施工実績</a></li>
+          <li><a href="company.html">→ 会社概要</a></li>
+          <li><a href="recruit.html">→ 採用情報</a></li>
+          <li><a href="contact.html">→ お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copyright">© 2024 YUGEN KAISHA KESSOKU DENGYOU. ALL RIGHTS RESERVED.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Hamburger
+const ham = document.getElementById('hamburger');
+const mNav = document.getElementById('mobileNav');
+ham.addEventListener('click', () => mNav.classList.toggle('open'));
+
+// Filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.work-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    cards.forEach(c => {
+      if(f === 'all' || c.dataset.cat === f) c.classList.remove('hide');
+      else c.classList.add('hide');
+    });
+  });
+});
+
+// Scroll anim
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

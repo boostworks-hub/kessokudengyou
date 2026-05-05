@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ | 有限会社結束電業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--dark-green:#2d4a1e;--mid-green:#3d6128;--brown:#5c3317;--gold:#c9a227;--gold-light:#e0b93a;--dark:#0f1a08;--dark2:#1a2a0f;--cream:#f2ead8;--gray:#a89880;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:#0f1a08;color:#f2ead8;overflow-x:hidden;}
+
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:72px;background:rgba(15,26,8,0.95);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,162,39,0.2);}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;}
+.logo-en{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:var(--gold);letter-spacing:3px;}
+.logo-ja{font-family:'Noto Serif JP',sans-serif;font-size:10px;color:var(--cream);letter-spacing:2px;opacity:0.8;}
+nav{display:flex;gap:32px;}
+nav a{font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:var(--cream);text-decoration:none;letter-spacing:1px;position:relative;padding-bottom:4px;transition:color 0.3s;}
+nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+nav a:hover,nav a.active{color:var(--gold);}
+nav a:hover::after,nav a.active::after{width:100%;}
+.header-cta{display:flex;align-items:center;gap:16px;}
+.tel-header{font-family:'Oswald',sans-serif;font-size:16px;color:var(--gold);letter-spacing:1px;}
+.btn-primary{background:var(--gold);color:#0f1a08;font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;padding:10px 20px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;}
+.btn-primary:hover{background:var(--gold-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);}
+.mobile-nav{display:none;position:fixed;top:72px;left:0;width:100%;background:rgba(10,18,5,0.98);z-index:999;padding:32px 40px;border-top:1px solid rgba(201,162,39,0.1);}
+.mobile-nav.open{display:flex;flex-direction:column;gap:20px;}
+.mobile-nav a{font-size:16px;color:var(--cream);text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(201,162,39,0.1);}
+
+/* PAGE HERO */
+.page-hero{padding-top:72px;height:320px;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--dark) 0%,var(--dark-green) 50%,var(--brown) 100%);}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,162,39,0.08) 1px,transparent 1px);background-size:28px 28px;}
+.page-hero-line{position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--gold),transparent);}
+.page-hero-content{padding:0 80px;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;}
+.breadcrumb a,.breadcrumb span{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(242,234,216,0.4);text-decoration:none;}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb .sep{color:rgba(201,162,39,0.3);}
+.breadcrumb .current{color:var(--gold);}
+.page-hero-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
+.page-hero-title{font-family:'Noto Serif JP',sans-serif;font-size:clamp(28px,4vw,52px);font-weight:900;line-height:1.2;}
+
+.container{max-width:1100px;margin:0 auto;padding:0 40px;}
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity 0.7s,transform 0.7s;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+.section-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
+.section-title{font-family:'Noto Serif JP',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;line-height:1.4;margin-bottom:16px;}
+
+/* CONTACT INFO */
+.contact-info-section{padding:80px 0 0;background:var(--dark2);position:relative;overflow:hidden;}
+.contact-info-section::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(201,162,39,0.05) 1px,transparent 1px);background-size:28px 28px;}
+.contact-info-inner{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;position:relative;z-index:1;}
+.contact-box{background:var(--dark);padding:48px;text-align:center;position:relative;overflow:hidden;transition:transform 0.3s;}
+.contact-box:hover{transform:translateY(-4px);}
+.contact-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);}
+.contact-box-icon{font-size:44px;margin-bottom:20px;}
+.contact-box-label{font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:16px;}
+.contact-box-main{font-family:'Oswald',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--cream);letter-spacing:1px;margin-bottom:10px;}
+.contact-box-main a{color:inherit;text-decoration:none;transition:color 0.3s;}
+.contact-box-main a:hover{color:var(--gold);}
+.contact-box-sub{font-size:12px;color:rgba(242,234,216,0.45);line-height:1.7;}
+.contact-box-btn{display:inline-block;margin-top:24px;background:var(--gold);color:#0f1a08;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:700;padding:12px 32px;text-decoration:none;letter-spacing:1px;transition:all 0.3s;}
+.contact-box-btn:hover{background:var(--gold-light);}
+
+/* FORM SECTION */
+.form-section{padding:80px 0 100px;background:var(--dark2);}
+.form-wrap{max-width:760px;margin:48px auto 0;position:relative;z-index:1;}
+.form-notice{background:rgba(201,162,39,0.07);border:1px solid rgba(201,162,39,0.2);padding:20px 28px;margin-bottom:40px;font-size:13px;color:rgba(242,234,216,0.6);line-height:1.8;}
+.form-notice strong{color:var(--gold);}
+.form-group{margin-bottom:28px;}
+.form-label{display:block;font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:rgba(242,234,216,0.8);margin-bottom:10px;letter-spacing:0.5px;}
+.form-label .required{display:inline-block;background:var(--gold);color:#0f1a08;font-size:10px;font-weight:700;padding:2px 8px;margin-left:8px;vertical-align:middle;letter-spacing:1px;}
+.form-label .optional{display:inline-block;border:1px solid rgba(201,162,39,0.3);color:rgba(201,162,39,0.6);font-size:10px;padding:2px 8px;margin-left:8px;vertical-align:middle;letter-spacing:1px;}
+.form-input,
+.form-select,
+.form-textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(201,162,39,0.2);color:var(--cream);font-family:'Noto Sans JP',sans-serif;font-size:14px;padding:14px 18px;outline:none;transition:border-color 0.3s,background 0.3s;-webkit-appearance:none;appearance:none;border-radius:0;}
+.form-input::placeholder,.form-textarea::placeholder{color:rgba(242,234,216,0.2);}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold);background:rgba(201,162,39,0.05);}
+.form-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a227' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 18px center;cursor:pointer;}
+.form-select option{background:#1a2a0f;color:var(--cream);}
+.form-textarea{resize:vertical;min-height:180px;line-height:1.8;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.form-submit{text-align:center;margin-top:40px;}
+.btn-submit{background:var(--gold);color:#0f1a08;font-family:'Noto Sans JP',sans-serif;font-size:15px;font-weight:700;padding:18px 72px;border:none;cursor:pointer;letter-spacing:2px;transition:all 0.3s;display:inline-flex;align-items:center;gap:12px;}
+.btn-submit:hover{background:var(--gold-light);transform:translateY(-3px);}
+.form-privacy{font-size:12px;color:rgba(242,234,216,0.35);text-align:center;margin-top:20px;line-height:1.8;}
+
+/* FOOTER */
+footer{background:#070f04;border-top:1px solid rgba(201,162,39,0.15);padding:64px 0 32px;}
+.footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:48px;}
+.footer-brand .logo-en{font-size:22px;}
+.footer-desc{font-size:12px;color:rgba(242,234,216,0.4);line-height:1.9;margin-top:16px;}
+.footer-tel{font-family:'Oswald',sans-serif;font-size:22px;color:var(--gold);margin-top:20px;}
+.footer-addr{font-size:11px;color:rgba(242,234,216,0.35);margin-top:6px;line-height:1.6;}
+.footer-col h4{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:20px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:10px;}
+.footer-col ul li a{font-size:12px;color:rgba(242,234,216,0.45);text-decoration:none;transition:color 0.3s;display:inline-flex;align-items:center;gap:6px;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(201,162,39,0.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;}
+.copyright{font-family:'Oswald',sans-serif;font-size:11px;color:rgba(242,234,216,0.2);letter-spacing:2px;}
+
+@media(max-width:900px){
+  nav,.header-cta .btn-primary{display:none;}
+  .hamburger{display:flex;}
+  .page-hero-content{padding:0 32px;}
+  .contact-info-inner{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  header{padding:0 20px;}
+  .page-hero-content{padding:0 20px;}
+  .container{padding:0 20px;}
+  .contact-box{padding:32px 24px;}
+  .form-wrap{margin-top:32px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-en">KESSOKU DENGYOU</span>
+    <span class="logo-ja">有限会社結束電業</span>
+  </a>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="service.html">施工案内</a>
+    <a href="works.html">施工実績</a>
+    <a href="company.html">会社概要</a>
+    <a href="recruit.html">採用情報</a>
+    <a href="contact.html" class="active">お問い合わせ</a>
+  </nav>
+  <div class="header-cta">
+    <span class="tel-header">📞 048-987-8278</span>
+    <a href="contact.html" class="btn-primary">無料相談</a>
+  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">HOME</a>
+  <a href="service.html">施工案内</a>
+  <a href="works.html">施工実績</a>
+  <a href="company.html">会社概要</a>
+  <a href="recruit.html">採用情報</a>
+  <a href="contact.html">お問い合わせ</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-line"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">HOME</a>
+      <span class="sep">／</span>
+      <span class="current">お問い合わせ</span>
+    </div>
+    <p class="page-hero-label">CONTACT</p>
+    <h1 class="page-hero-title">お問い合わせ</h1>
+  </div>
+</div>
+
+<!-- CONTACT INFO -->
+<section class="contact-info-section">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <p class="section-label">GET IN TOUCH</p>
+      <h2 class="section-title">まずはお気軽にご連絡ください</h2>
+      <p style="font-size:14px;color:rgba(242,234,216,0.5);margin-top:8px;">無料現地調査・お見積りは費用不要です。どんな些細なご相談でもお答えします。</p>
+    </div>
+    <div class="contact-info-inner fade-up">
+      <div class="contact-box">
+        <div class="contact-box-icon">📞</div>
+        <p class="contact-box-label">PHONE</p>
+        <p class="contact-box-main"><a href="tel:0489878278">048-987-8278</a></p>
+        <p class="contact-box-sub">
+          受付時間 8:00〜18:00<br>
+          定休日：日曜日・祝日<br>
+          お急ぎの場合はお電話が確実です
+        </p>
+        <a href="tel:0489878278" class="contact-box-btn">今すぐ電話する</a>
+      </div>
+      <div class="contact-box">
+        <div class="contact-box-icon">✉️</div>
+        <p class="contact-box-label">MAIL FORM</p>
+        <p class="contact-box-main" style="font-size:22px;">メールフォーム</p>
+        <p class="contact-box-sub">
+          24時間受付中<br>
+          2営業日以内にご返信いたします<br>
+          写真や図面の添付もお気軽に
+        </p>
+        <a href="#form" class="contact-box-btn">フォームへ進む</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="form">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;">
+      <p class="section-label">MAIL FORM</p>
+      <h2 class="section-title">お問い合わせフォーム</h2>
+    </div>
+    <div class="form-wrap fade-up">
+      <div class="form-notice">
+        <strong>【ご確認ください】</strong><br>
+        お問い合わせ内容を確認後、2営業日以内にご返信いたします。<br>
+        お急ぎの場合はお電話（048-987-8278）にてご連絡ください。<br>
+        迷惑メール対策の設定によってはご返信が届かない場合があります。受信設定をご確認ください。
+      </div>
+
+      <form action="#" method="post">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="name">
+              お名前<span class="required">必須</span>
+            </label>
+            <input class="form-input" type="text" id="name" name="name" placeholder="例）田中 太郎" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="company">
+              会社名・屋号<span class="optional">任意</span>
+            </label>
+            <input class="form-input" type="text" id="company" name="company" placeholder="例）株式会社〇〇">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="tel">
+              電話番号<span class="required">必須</span>
+            </label>
+            <input class="form-input" type="tel" id="tel" name="tel" placeholder="例）048-987-0000" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">
+              メールアドレス<span class="required">必須</span>
+            </label>
+            <input class="form-input" type="email" id="email" name="email" placeholder="例）info@example.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="address">
+            施工場所・住所<span class="optional">任意</span>
+          </label>
+          <input class="form-input" type="text" id="address" name="address" placeholder="例）埼玉県越谷市〇〇町〇丁目">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="type">
+            お問い合わせ種別<span class="required">必須</span>
+          </label>
+          <select class="form-select" id="type" name="type" required>
+            <option value="" disabled selected>お問い合わせの種別を選択してください</option>
+            <option value="住宅電気工事">一般住宅電気工事について</option>
+            <option value="店舗電気工事">店舗・オフィス電気工事について</option>
+            <option value="工場電気工事">工場・産業施設電気工事について</option>
+            <option value="メンテナンス">電気設備メンテナンス・点検について</option>
+            <option value="採用">採用について</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">
+            お問い合わせ内容<span class="required">必須</span>
+          </label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="ご依頼・ご相談の内容をできるだけ詳しくご記入ください。&#10;（例：築20年の戸建てでコンセントを4か所増設したい、分電盤が古くなったので交換したい、など）" required></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-submit">
+            <span>▶</span> 送信する
+          </button>
+        </div>
+        <p class="form-privacy">
+          送信いただいた個人情報は、お問い合わせへの返信・施工のご提案のみに使用し、<br>
+          第三者への提供は一切行いません。
+        </p>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="max-width:1200px;">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-en">KESSOKU DENGYOU</span>
+          <span class="logo-ja">有限会社結束電業</span>
+        </div>
+        <p class="footer-desc">越谷市を拠点に埼玉県全域で電気工事を手がける、創業30年以上の地域密着型電気工事会社です。住宅・店舗・工場まで、あらゆる電気工事にお応えします。</p>
+        <p class="footer-tel">048-987-8278</p>
+        <p class="footer-addr">〒343-0042<br>埼玉県越谷市大間野町４－３３５－１４<br>受付 8:00〜18:00 ／ 日曜・祝日定休</p>
+      </div>
+      <div class="footer-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li><a href="service.html">→ 一般住宅電気工事</a></li>
+          <li><a href="service.html">→ 店舗・オフィス電気工事</a></li>
+          <li><a href="service.html">→ 工場・産業施設電気工事</a></li>
+          <li><a href="service.html">→ 電気設備メンテナンス</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>PAGES</h4>
+        <ul>
+          <li><a href="index.html">→ HOME</a></li>
+          <li><a href="works.html">→ 施工実績</a></li>
+          <li><a href="company.html">→ 会社概要</a></li>
+          <li><a href="recruit.html">→ 採用情報</a></li>
+          <li><a href="contact.html">→ お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="copyright">© 2024 YUGEN KAISHA KESSOKU DENGYOU. ALL RIGHTS RESERVED.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const ham = document.getElementById('hamburger');
+const mNav = document.getElementById('mobileNav');
+ham.addEventListener('click', () => mNav.classList.toggle('open'));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
